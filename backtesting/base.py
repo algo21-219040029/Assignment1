@@ -2,7 +2,8 @@ import os
 import json
 import importlib
 from pathlib import Path
-from pandas import DataFrame
+from pandas import DataFrame,\
+                    Series
 from abc import abstractmethod
 import matplotlib.pyplot as plt
 from typing import Dict, Tuple, Any
@@ -64,6 +65,10 @@ class BaseBacktesting(BaseClass):
             os.makedirs(self.backtest_result_path)
 
         self.init_basics_data()
+
+        self.backtest_result: Dict[str, Any] = {}
+        self.cum_profit_series: Series = None
+
 
     def init_basics_data(self) -> None:
         """
@@ -298,6 +303,70 @@ class BaseBacktesting(BaseClass):
             with open(setting_file_path, "rb") as f:
                 settings = json.load(f)
         return settings
+
+    def get_info(self) -> Dict[str, Any]:
+        # 因子信息
+        factor_info = self.factor_info
+        factor_group, factor_name = factor_info['group'], factor_info['name']
+        # 商品池信息
+        commodity_pool_info = self.commodity_pool_info
+        commodity_pool_group, commodity_pool_name = commodity_pool_info['group'], commodity_pool_info['name']
+        # 信号信息
+        signal_info = self.signal_info
+        signal_group, signal_name = signal_info['group'], signal_info['name']
+        # 权重名称
+        weight_info = self.weight_info
+        weight_group, weight_name = weight_info['group'], weight_info['name']
+        # 回测参数
+        backtest_params = self.get_params()
+
+        info_dict = {}
+        info_dict['factor_group'] = factor_group
+        info_dict['factor_name'] = factor_name
+        info_dict['factor_params'] = self.factor_params
+        info_dict['commodity_pool_group'] = commodity_pool_group
+        info_dict['commodity_pool_name'] = commodity_pool_name
+        info_dict['commodity_pool_params'] = self.commodity_pool_params
+        info_dict['signal_group'] = signal_group
+        info_dict['signal_name'] = signal_name
+        info_dict['signal_params'] = self.signal_params
+        info_dict['weight_group'] = weight_group
+        info_dict['weight_name'] = weight_name
+        info_dict['weight_params'] = self.weight_params
+        info_dict['backtest_params'] = backtest_params
+        return info_dict
+
+    def get_metrics(self) -> Tuple[Any, Any, Any]:
+        all_metrics = self.backtest_result['metrics']['all']
+        industry_metrics = self.backtest_result['metrics']['industry']
+        symbol_metrics = self.backtest_result['metrics']['symbol']
+        return all_metrics, industry_metrics, symbol_metrics
+
+    def plot(self) -> None:
+        backtest_result = self.backtest_result
+        metrics_result = backtest_result['metrics']
+        title = ''
+        # 添加因子
+        title += f"{self.factor.get_string()}\n"
+        # 添加商品池
+        title += f"{self.commodity_pool.get_string()}\n"
+        # 添加信号
+        title += f"{self.signal.get_string()}\n"
+        # 添加权重
+        title += f"{self.weight.get_string()}\n"
+        # 添加回测
+        title += f"{self.get_string()}         "
+        # 添加指标
+        title += f"sharpe={round(metrics_result['all']['sharpe'],2)} turnover rate={round(metrics_result['all']['turnover_rate'],2)} annual return={round(metrics_result['all']['annual_return'],2)}"
+
+        # 保存回测曲线结果
+        plt.figure()
+        init_total_value = 100000000
+        (self.cum_profit_series / init_total_value).plot(figsize=(20, 8))
+        # plt.title(title, fontdict={'horizontalalignment': 'center', 'verticalalignment':'left'}, bbox=dict(ec='black', fc='w'))
+        plt.title(title, fontdict={'horizontalalignment': 'center', 'verticalalignment': 'center'})
+        plt.grid()
+        plt.show()
 
     def output_backtest_result(self, overwrite: bool = True) -> None:
         """
