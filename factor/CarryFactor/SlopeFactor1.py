@@ -1,14 +1,11 @@
 import numpy as np
 import pandas as pd
 from tqdm import tqdm
-from typing import Dict
-from pathlib import Path
 import statsmodels.api as sm
-from pandas import Series, DataFrame
+from pandas import DataFrame
 from sklearn.linear_model import LinearRegression
 
 from factor.base import BaseFactor
-from data_manager import BasicsDataManager
 from utils.utility import stack_dataframe_by_fields
 
 class SlopeFactor1(BaseFactor):
