@@ -5,6 +5,15 @@
 I choose one article in zhihu, one popular Chinese website where people can ask questions and connect with people who contribute unique insights: \
 **如何构建稳健的商品期货carry组合？**: https://zhuanlan.zhihu.com/p/46197447
 
+# Data
+
+To run the code, you need to download the data from baidu yunpan, the url is:
+
+链接：https://pan.baidu.com/s/1qC0aIvdy1XcrVlRtUMrlQQ 
+提取码：nc39 
+
+**After download the data, you need to put the data folder in the path where the folder backtesting is put.**
+
 ## Carry Factor
 
 Carry factor is a very useful but simple one for commodity futures.  As we all know, there are several contracts with different maturity date for every kind of commodity futures. For example, in March 1st, 2021, there are IF2103, IF2104, IF2106, IF2106 for IF. However, although they are all IFs, but these contracts have different prices due to their different maturity dates, which is the reason why the carry factor is useful.
@@ -363,7 +372,7 @@ factor.factor_value
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -833,7 +842,7 @@ dynamic_pool3.commodity_pool_value
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -1526,7 +1535,7 @@ self.run_backtesting()
     100%|███████████████████████████████████████████████| 2667/2667 [00:02<00:00, 1052.80it/s]
     100%|███████████████████████████████████████████████| 2667/2667 [00:02<00:00, 1051.44it/s]
     100%|███████████████████████████████████████████████| 2667/2667 [00:02<00:00, 1048.27it/s]
-    
+
 
 
 
@@ -2037,7 +2046,7 @@ self.backtest_result['metrics']['industry']
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -2414,7 +2423,7 @@ self.backtest_result['metrics']['symbol']
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -2762,7 +2771,7 @@ self.run_backtesting()
     100%|███████████████████████████████████████████████| 2667/2667 [00:02<00:00, 1027.33it/s]
     100%|███████████████████████████████████████████████| 2667/2667 [00:02<00:00, 1015.99it/s]
     100%|███████████████████████████████████████████████| 2667/2667 [00:02<00:00, 1046.20it/s]
-    
+
 
 
 
@@ -3043,7 +3052,7 @@ self.backtest_result['metrics']['industry']
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -3420,7 +3429,7 @@ self.backtest_result['metrics']['symbol']
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -3853,7 +3862,7 @@ self.run_backtesting()
     100%|███████████████████████████████████████████████| 2667/2667 [00:02<00:00, 1049.82it/s]
     100%|███████████████████████████████████████████████| 2667/2667 [00:02<00:00, 1046.23it/s]
     100%|███████████████████████████████████████████████| 2667/2667 [00:02<00:00, 1030.02it/s]
-    
+
 
 
 ```python
@@ -3917,7 +3926,7 @@ self.run_backtesting()
     100%|███████████████████████████████████████████████| 2667/2667 [00:02<00:00, 1033.68it/s]
     100%|███████████████████████████████████████████████| 2667/2667 [00:02<00:00, 1029.70it/s]
     100%|███████████████████████████████████████████████| 2667/2667 [00:02<00:00, 1016.78it/s]
-    
+
 
 
 
@@ -4198,7 +4207,7 @@ self.backtest_result['metrics']['industry']
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -4575,7 +4584,7 @@ self.backtest_result['metrics']['symbol']
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -5003,7 +5012,7 @@ self.run_backtesting()
     100%|███████████████████████████████████████████████| 2667/2667 [00:02<00:00, 1015.62it/s]
     100%|███████████████████████████████████████████████| 2667/2667 [00:02<00:00, 1040.50it/s]
     100%|███████████████████████████████████████████████| 2667/2667 [00:02<00:00, 1037.27it/s]
-    
+
 
 
 ```python
