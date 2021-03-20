@@ -2,7 +2,6 @@ import numpy as np
 from pandas import DataFrame
 from commodity_pool.base import BaseCommodityPool
 
-
 class DynamicPool3(BaseCommodityPool):
 
     def __init__(self, q: float = 0.25, window: int = 126) -> None:
