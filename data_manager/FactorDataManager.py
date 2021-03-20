@@ -7,7 +7,6 @@ from collections import defaultdict
 
 from factor.base import BaseFactor
 
-
 class FactorDataManager:
     """
     因子数据管理器
@@ -77,7 +76,7 @@ class FactorDataManager:
         factor_class = getattr(factor_module, name)
         return factor_class
 
-    def get_file_name(self, params: Dict[str, Any]) -> str:
+    def get_file_name(self, params) -> str:
         """
         将参数字典转化为文件名，即参数1_参数值1 参数2_参数值2 参数3_参数值3 xxx
 
@@ -99,7 +98,7 @@ class FactorDataManager:
             string = string[:-1]
         return string
 
-    def check_local_factor_data(self, group: str, name: str, **params: Dict[str, Any]) -> bool:
+    def check_local_factor_data(self, group: str, name: str, **params) -> bool:
         """
         检查本地是否有因子值
 
@@ -130,7 +129,7 @@ class FactorDataManager:
         else:
             return False
 
-    def get_factor(self, group: str, name: str, **params: Dict[str, Any]) -> BaseFactor:
+    def get_factor(self, group: str, name: str, **params) -> BaseFactor:
         """
         获取因子值
 
@@ -207,7 +206,7 @@ class FactorDataManager:
 
             return factor_instance
 
-    def compute_factor(self, group: str, name: str, **params: Dict[str, Any]) -> BaseFactor:
+    def compute_factor(self, group: str, name: str, **params) -> BaseFactor:
         """
         计算因子数据DataFrame
 
@@ -245,7 +244,7 @@ class FactorDataManager:
             factor_instance.compute_factor()
             return factor_instance
 
-    def save_factor(self, group: str, name: str, overwrite: bool = False, **params: Dict[str, Any]) -> None:
+    def save_factor(self, group: str, name: str, overwrite: bool = False, **params) -> None:
         """
         保存因子数据
 
